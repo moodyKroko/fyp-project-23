@@ -1,5 +1,22 @@
 # Final Year Project for CS-2023
-## This is a repo for Computer Science Final Year Project for Year 2023.
+This is a repo for Computer Science Final Year Project for Year 2023.
+
+## Project structure
+```
+$PROJECT_ROOT
+│   # contains spring boot files
+├── backend
+|
+│   # contains React/Next.js files 
+├── frontend
+|
+│   # contains interpreter files written in java
+├── interpreter
+|
+│   # contains yml files for github actions
+└── .github/workflows
+```
+
 ## Tech used for the app
   - [Java](https://www.java.com/en/) - A general-purpose, cross-platform, object-oriented programming language used for building mobile, desktop and web applications
   - [TypeScript](https://www.typescriptlang.org/) - A strongly typed programming language that builds on JavaScript, giving you better tooling.
