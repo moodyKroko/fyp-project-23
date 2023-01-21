@@ -3,6 +3,7 @@ package com.projlearn.backend.services;
 import com.projlearn.backend.entity.User;
 import com.projlearn.backend.repository.UserRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,5 +17,17 @@ public class UserService {
 
   public List<User> getAllUsers() {
     return userRepo.findAll();
+  }
+
+  public User getSingleUser(Long id) {
+    Optional<User> user = userRepo.findById(id);
+
+    if(user.isEmpty()) {
+      return new User();
+    }
+
+    User foundUser = new User();
+
+   return foundUser;
   }
 }
