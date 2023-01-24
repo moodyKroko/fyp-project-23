@@ -19,15 +19,9 @@ public class UserService {
     return userRepo.findAll();
   }
 
-  public User getSingleUser(Long id) {
+  public User getUserById(Long id) {
     Optional<User> user = userRepo.findById(id);
 
-    if(user.isEmpty()) {
-      return new User();
-    }
-
-    User foundUser = new User();
-
-   return foundUser;
+    return user.orElseGet(User::new);
   }
 }
