@@ -20,7 +20,7 @@ const questions = [
   { id: 4, title: 'Algebra', status: '', difficulty: 'hard' }
 ]
 
-export default function Projects() {
+const Projects = () =>  {
   const router = useRouter()
   //   const id = router.query.id
 
@@ -74,3 +74,5 @@ export default function Projects() {
     </Layout>
   )
 }
+
+export default Projects
