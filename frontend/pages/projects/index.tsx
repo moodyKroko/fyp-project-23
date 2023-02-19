@@ -43,17 +43,12 @@ const data: Questions[] = [
   { id: 4, title: 'Algebra', status: '', difficulty: 'hard' }
 ]
 
-const RenderLinks = (data: Questions[]) => {
-  return data.map(question => (
-    <ListItem key={question.id}>
-      <Link
-        as={NextLink}
-        href={`/projects/${question.title.toLowerCase().replaceAll(' ', '-')}`}
-      >
-        {question.title}
-      </Link>
-    </ListItem>
-  ))
+const RenderLinks = ({ title }) => {
+  return (
+    <NextLink href={`/projects/${title.toLowerCase().replaceAll(' ', '-')}`}>
+      {title}
+    </NextLink>
+  )
 }
 
 const columnHelper = createColumnHelper<Questions>()
@@ -71,7 +66,7 @@ const columns = [
     header: 'Status'
   }),
   columnHelper.accessor('title', {
-    cell: info => info.getValue(),
+    cell: info => <RenderLinks title={info.getValue()} />,
     header: 'Title'
   }),
   columnHelper.accessor('difficulty', {
@@ -108,9 +103,17 @@ const DataTable = ({ data, columns }) => {
                     onClick={header.column.getToggleSortingHandler()}
                     isNumeric={meta?.isNumeric}
                   >
-                    {flexRender(header.column.columnDef.header, header.getContext())}
+                    <Box display={'flex'}>
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                      {{ asc: <IoCaretUp />, desc: <IoCaretDown /> }[
+                        header.column.getIsSorted() as string
+                      ] ?? null}
+                    </Box>
 
-                    {
+                    {/* {
                       <chakra.span display={'inline-flex'} pl="4">
                         {header.column.getIsSorted() ? (
                           header.column.getIsSorted() === 'desc' ? (
@@ -120,7 +123,7 @@ const DataTable = ({ data, columns }) => {
                           )
                         ) : null}
                       </chakra.span>
-                    }
+                    } */}
                   </Th>
                 </>
               )
