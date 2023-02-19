@@ -1,27 +1,17 @@
-import { useRouter } from 'next/router'
-import NextLink from 'next/link'
-import {
-  Box,
-  Container,
-  Link,
-  List,
-  ListItem,
-  Stack,
-  Table,
-  TableCaption,
-  TableContainer,
-  Tbody,
-  Td,
-  Text,
-  Tfoot,
-  Th,
-  Thead,
-  Tr
-} from '@chakra-ui/react'
-import { stringify } from 'querystring'
-import Footer from '@/components/footer'
-import Navbar from '@/components/navbar'
 import Layout from '@/components/layouts/main'
+import {
+    Box, Link,
+    List,
+    ListItem, Table,
+    TableCaption,
+    TableContainer,
+    Tbody,
+    Td, Th,
+    Thead,
+    Tr
+} from '@chakra-ui/react'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 
 const questions = [
   { id: 1, title: 'Hello World', status: 'done', difficulty: 'easy' },
@@ -84,14 +74,3 @@ export default function Projects() {
     </Layout>
   )
 }
-
-//   <ListItem key={question.id}>
-//     <Link
-//       as={NextLink}
-//       href={`/projects/${question.title
-//         .toLowerCase()
-//         .replaceAll(' ', '-')}`}
-//     >
-//       {question.title}
-//     </Link>
-//   </ListItem>
