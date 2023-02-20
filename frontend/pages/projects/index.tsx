@@ -13,7 +13,10 @@ import {
   Th,
   Thead,
   Tr,
-  Link
+  Link,
+  Button,
+  TableContainer,
+  Text
 } from '@chakra-ui/react'
 
 import {
@@ -26,7 +29,12 @@ import {
 } from '@tanstack/react-table'
 
 import { useRouter } from 'next/router'
-import { IoCaretDown, IoCaretUp } from 'react-icons/io5'
+import {
+  IoCaretDown,
+  IoCaretUp,
+  IoCheckmarkDone,
+  IoHourglass
+} from 'react-icons/io5'
 import NextLink from 'next/link'
 
 type Questions = {
@@ -45,32 +53,40 @@ const data: Questions[] = [
 
 const RenderLinks = ({ title }) => {
   return (
-    <NextLink href={`/projects/${title.toLowerCase().replaceAll(' ', '-')}`}>
+    <Link
+      as={NextLink}
+      href={`/projects/${title.toLowerCase().replaceAll(' ', '-')}`}
+      _hover={{ color: 'purple.600' }}
+    >
       {title}
-    </NextLink>
+    </Link>
+  )
+}
+
+const RenderStatus = ({ status }) => {
+  return (
+    status &&
+    (status === 'done' ? (
+      <IoCheckmarkDone size={20} color="green" />
+    ) : (
+      <IoHourglass size={20} color="orange" />
+    ))
   )
 }
 
 const columnHelper = createColumnHelper<Questions>()
 
 const columns = [
-  columnHelper.accessor('id', {
-    cell: info => info.getValue(),
-    header: 'No',
-    meta: {
-      isNumeric: true
-    }
-  }),
-  columnHelper.accessor('status', {
-    cell: info => info.getValue(),
-    header: 'Status'
-  }),
   columnHelper.accessor('title', {
     cell: info => <RenderLinks title={info.getValue()} />,
     header: 'Title'
   }),
+  columnHelper.accessor('status', {
+    cell: info => <RenderStatus status={info.getValue()} />,
+    header: 'Status'
+  }),
   columnHelper.accessor('difficulty', {
-    cell: info => info.getValue(),
+    cell: info => <Text casing={'capitalize'}>{info.getValue()}</Text>,
     header: 'Difficulty'
   })
 ]
@@ -90,62 +106,64 @@ const DataTable = ({ data, columns }) => {
   })
 
   return (
-    <Table>
-      <Thead>
-        {table.getHeaderGroups().map(headerGroup => (
-          <Tr key={headerGroup.id}>
-            {headerGroup.headers.map(header => {
-              const meta: any = header.column.columnDef.meta
-              return (
-                <>
-                  <Th
-                    key={header.id}
-                    onClick={header.column.getToggleSortingHandler()}
-                    isNumeric={meta?.isNumeric}
-                  >
-                    <Box display={'flex'}>
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                      {{ asc: <IoCaretUp />, desc: <IoCaretDown /> }[
-                        header.column.getIsSorted() as string
-                      ] ?? null}
+    <TableContainer>
+      <Table variant={'striped'}>
+        <Thead>
+          {table.getHeaderGroups().map(headerGroup => (
+            <Tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => {
+                const meta: any = header.column.columnDef.meta
+                return (
+                  <>
+                    <Th
+                      key={header.id}
+                      onClick={header.column.getToggleSortingHandler()}
+                      isNumeric={meta?.isNumeric}
+                    >
+                      <Box
+                        justifyContent={'center'}
+                        display={'flex'}
+                        style={{ gap: 4 }}
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                        <chakra.span>
+                          {header.column.getIsSorted() ? (
+                            header.column.getIsSorted() === 'desc' ? (
+                              <IoCaretDown aria-label="sorted descending" />
+                            ) : (
+                              <IoCaretUp aria-label="sorted ascending" />
+                            )
+                          ) : null}
+                        </chakra.span>
+                      </Box>
+                    </Th>
+                  </>
+                )
+              })}
+            </Tr>
+          ))}
+        </Thead>
+        <Tbody>
+          {table.getRowModel().rows.map(row => (
+            <Tr key={row.id}>
+              {row.getVisibleCells().map(cell => {
+                const meta: any = cell.column.columnDef.meta
+                return (
+                  <Td key={cell.id} isNumeric={meta?.isNumeric}>
+                    <Box display={'flex'} justifyContent={'center'}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </Box>
-
-                    {/* {
-                      <chakra.span display={'inline-flex'} pl="4">
-                        {header.column.getIsSorted() ? (
-                          header.column.getIsSorted() === 'desc' ? (
-                            <IoCaretDown aria-label="sorted descending" />
-                          ) : (
-                            <IoCaretUp aria-label="sorted ascending" />
-                          )
-                        ) : null}
-                      </chakra.span>
-                    } */}
-                  </Th>
-                </>
-              )
-            })}
-          </Tr>
-        ))}
-      </Thead>
-      <Tbody>
-        {table.getRowModel().rows.map(row => (
-          <Tr key={row.id}>
-            {row.getVisibleCells().map(cell => {
-              const meta: any = cell.column.columnDef.meta
-              return (
-                <Td key={cell.id} isNumeric={meta?.isNumeric}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </Td>
-              )
-            })}
-          </Tr>
-        ))}
-      </Tbody>
-    </Table>
+                  </Td>
+                )
+              })}
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
   )
 }
 

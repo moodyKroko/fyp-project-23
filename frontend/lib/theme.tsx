@@ -10,9 +10,9 @@ const colors = {
   red_pigment: '#FB2327',
   alice_blue: '#E8F1F2',
   delft_blue: '#223359',
-  rich_black: '#11151C',
-//   black: '#11151C',
-//   white: '#E8F1F2'
+  rich_black: '#11151C'
+  //   black: '#11151C',
+  //   white: '#E8F1F2'
 }
 
 const styles = {
@@ -23,6 +23,11 @@ const styles = {
   })
 }
 
-const theme = extendTheme({ config, styles, colors })
+const fonts = {
+  body: 'Roboto, Open sans',
+  heading: 'Montserrat, Roboto'
+}
+
+const theme = extendTheme({ config, styles, colors, fonts })
 
 export default theme
