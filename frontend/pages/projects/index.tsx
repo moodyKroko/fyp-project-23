@@ -107,58 +107,47 @@ const DataTable = ({ data, columns }) => {
 
   return (
     <TableContainer>
-      <Table variant={'striped'}>
+      <Table size={'lg'} variant={'striped'}>
         <Thead>
           {table.getHeaderGroups().map(headerGroup => (
             <Tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
-                const meta: any = header.column.columnDef.meta
-                return (
-                  <>
-                    <Th
-                      key={header.id}
+              {headerGroup.headers.map(header => (
+                <Th
+                  key={header.id}
+                  onClick={header.column.getToggleSortingHandler()}
+                  _hover={{ cursor: 'pointer' }}
+                >
+                  <Box justifyContent={'center'} display={'flex'} style={{ gap: 4 }}>
+                    {flexRender(header.column.columnDef.header, header.getContext())}
+                    <chakra.span
+                      display={'flex'}
+                      justifyContent={'center'}
                       onClick={header.column.getToggleSortingHandler()}
-                      isNumeric={meta?.isNumeric}
                     >
-                      <Box
-                        justifyContent={'center'}
-                        display={'flex'}
-                        style={{ gap: 4 }}
-                      >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                        <chakra.span>
-                          {header.column.getIsSorted() ? (
-                            header.column.getIsSorted() === 'desc' ? (
-                              <IoCaretDown aria-label="sorted descending" />
-                            ) : (
-                              <IoCaretUp aria-label="sorted ascending" />
-                            )
-                          ) : null}
-                        </chakra.span>
-                      </Box>
-                    </Th>
-                  </>
-                )
-              })}
+                      {header.column.getIsSorted() ? (
+                        header.column.getIsSorted() === 'desc' ? (
+                          <IoCaretDown aria-label="sorted descending" />
+                        ) : (
+                          <IoCaretUp aria-label="sorted ascending" />
+                        )
+                      ) : null}
+                    </chakra.span>
+                  </Box>
+                </Th>
+              ))}
             </Tr>
           ))}
         </Thead>
         <Tbody>
           {table.getRowModel().rows.map(row => (
             <Tr key={row.id}>
-              {row.getVisibleCells().map(cell => {
-                const meta: any = cell.column.columnDef.meta
-                return (
-                  <Td key={cell.id} isNumeric={meta?.isNumeric}>
-                    <Box display={'flex'} justifyContent={'center'}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </Box>
-                  </Td>
-                )
-              })}
+              {row.getVisibleCells().map(cell => (
+                <Td key={cell.id}>
+                  <Box display={'flex'} justifyContent={'center'}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </Box>
+                </Td>
+              ))}
             </Tr>
           ))}
         </Tbody>
