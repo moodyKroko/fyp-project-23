@@ -9,7 +9,10 @@ const Problem = () => {
 
   return (
     <>
-      <Text casing={'capitalize'}>Problem Title: {title}</Text>
+      <Text casing={'capitalize'}>
+        Problem Title: {title}
+        {router.query.slug}
+      </Text>
     </>
   )
 }

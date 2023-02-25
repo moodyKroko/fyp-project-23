@@ -28,7 +28,7 @@ import {
   useReactTable
 } from '@tanstack/react-table'
 
-import { useRouter } from 'next/router'
+import { Router, useRouter } from 'next/router'
 import {
   IoCaretDown,
   IoCaretUp,
@@ -52,10 +52,12 @@ const data: Questions[] = [
 ]
 
 const RenderLinks = ({ title }) => {
+  const projectTitle = title.toLowerCase().replaceAll(' ', '-')
+
   return (
     <Link
       as={NextLink}
-      href={`/projects/${title.toLowerCase().replaceAll(' ', '-')}`}
+      href={`/projects/${projectTitle}`}
       _hover={{ color: 'purple.600' }}
     >
       {title}
@@ -77,12 +79,16 @@ const RenderStatus = ({ status }) => {
 const columnHelper = createColumnHelper<Questions>()
 
 const columns = [
+  columnHelper.accessor('id', {
+    cell: info => info.getValue(),
+    header: 'ID'
+  }),
   columnHelper.accessor('title', {
     cell: info => <RenderLinks title={info.getValue()} />,
     header: 'Title'
   }),
   columnHelper.accessor('status', {
-    cell: info => <RenderStatus status={info.getValue()} />,
+    cell: info => <RenderStatus status={info.getValue} />,
     header: 'Status'
   }),
   columnHelper.accessor('difficulty', {
