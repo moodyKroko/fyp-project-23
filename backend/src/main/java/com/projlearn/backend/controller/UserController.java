@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("users")
 public class UserController {
 
   private final UserService userService;
@@ -26,7 +26,7 @@ public class UserController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<User> getUserById(@PathVariable Long id) {
+  public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
     // TODO: change this to resource not found later
     return ResponseEntity.ok(userService.getUserById(id));
   }
