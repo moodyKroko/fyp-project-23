@@ -1,4 +1,4 @@
-package com.projlearn.backend.config;
+package com.projlearn.backend;
 
 import javax.sql.DataSource;
 import org.springframework.boot.jdbc.DataSourceBuilder;
