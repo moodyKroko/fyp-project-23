@@ -21,7 +21,7 @@ public class UserService {
 
   public User getUserById(Long id) {
     Optional<User> user = userRepo.findById(id);
-
+    // TODO: throw error instead of sending empty User
     return user.orElseGet(User::new);
   }
 }
