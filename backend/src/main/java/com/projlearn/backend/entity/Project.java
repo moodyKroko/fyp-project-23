@@ -16,7 +16,7 @@ public class Project extends BaseModel {
   @NotEmpty
   private String title;
 
-  @Column
+  @Column(length = 500)
   @NotEmpty
   private String description;
 
