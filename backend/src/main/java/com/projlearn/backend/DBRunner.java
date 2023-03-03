@@ -30,6 +30,7 @@ public class DBRunner implements CommandLineRunner {
     logger.info("--- saving projects to database ---");
 
     int dataCount = 50;
+    int oneThirdOfDataCount = 50 / 3;
     for (int i = 0; i < dataCount; i++) {
       title.append(faker.lorem().characters(3, 10, false, false));
       description.append(faker.lorem().sentence(10));
@@ -39,9 +40,9 @@ public class DBRunner implements CommandLineRunner {
       project.setDescription(description.toString());
       project.setStatus(Status.NOT_ATTEMPTED);
 
-      if (i < 16) {
+      if (i < oneThirdOfDataCount) {
         project.setDifficulty(Difficulty.EASY);
-      } else if (i < 32) {
+      } else if (i < (oneThirdOfDataCount + oneThirdOfDataCount)) {
         project.setDifficulty(Difficulty.MEDIUM);
       } else {
         project.setDifficulty(Difficulty.HARD);
