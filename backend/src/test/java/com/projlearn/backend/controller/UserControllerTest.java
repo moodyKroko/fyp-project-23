@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.github.javafaker.Faker;
 import com.projlearn.backend.entity.User;
 import com.projlearn.backend.services.UserService;
-import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -21,11 +20,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
 
-  @Autowired
-  private MockMvc mvc;
+  @Autowired private MockMvc mvc;
 
-  @MockBean
-  private UserService userService;
+  @MockBean private UserService userService;
 
   @Test
   public void shouldInsertUsers_thenFindAllUsers() throws Exception {
@@ -56,7 +53,5 @@ public class UserControllerTest {
     mvc.perform(get("/users").contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(userCount));
-
   }
-
 }
