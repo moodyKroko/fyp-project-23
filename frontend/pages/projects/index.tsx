@@ -163,7 +163,7 @@ const Projects = () => {
         <meta name="author" content="moodykroko" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box m={4} h="100vh" top={24} position={'relative'} textAlign={'center'}>
+      <Box m={4} top={24} position={'relative'} textAlign={'center'}>
         <Box p={4} m={4}>
           <DataTable columns={columns} data={data} />
         </Box>

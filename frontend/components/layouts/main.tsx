@@ -6,10 +6,12 @@ import Navbar from '../navbar'
 
 const Layout = ({ children }) => {
   return (
-    <Box>
+    <Box as={'main'}>
       <Navbar />
-      <Container maxW={'container.xl'}>{children}</Container>
-      <Footer />
+      <Container maxW={'container.xl'}>
+        {children}
+        <Footer />
+      </Container>
     </Box>
   )
 }
