@@ -12,6 +12,8 @@ const Footer = () => {
       justifyContent={'center'}
       alignContent={'center'}
       display={'flex'}
+      mt={10}
+      mb={10}
       gap={150}
     >
       <Link

@@ -11,7 +11,7 @@ import Head from 'next/head'
 
 export default function Home() {
   return (
-    <Box>
+    <>
       <Head>
         <title>Proj2Learn | Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,7 +20,7 @@ export default function Home() {
         <meta name="author" content="moodykroko" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Stack direction={'column'} spacing={44}>
+      <Stack direction={'column'} spacing={44} justify={'center'}>
         <Box top={32} position={'relative'} textAlign={'center'}>
           <Text
             p={2}
@@ -72,6 +72,6 @@ export default function Home() {
           </Stack>
         </Box>
       </Stack>
-    </Box>
+    </>
   )
 }
