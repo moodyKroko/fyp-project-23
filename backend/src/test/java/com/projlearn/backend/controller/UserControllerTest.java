@@ -18,14 +18,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @WebMvcTest(UserController.class)
-public class UserControllerTest {
+class UserControllerTest {
 
-  @Autowired private MockMvc mvc;
+  @Autowired
+  private MockMvc mvc;
 
   @MockBean private UserService userService;
 
   @Test
-  public void shouldInsertUsers_thenFindAllUsers() throws Exception {
+  void shouldInsertUsers_thenFindAllUsers() throws Exception {
     Faker faker = new Faker();
 
     List<User> users = new ArrayList<>();
