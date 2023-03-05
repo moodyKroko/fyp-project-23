@@ -1,41 +1,31 @@
 import React from 'react'
 
-import Layout from '@/components/layouts/main'
 
 import {
-  Box,
-  chakra,
-  ListItem,
-  Stack,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  Link,
-  Button,
-  TableContainer,
-  Text
+    Box,
+    chakra, Link, Table, TableContainer, Tbody,
+    Td, Text, Th,
+    Thead,
+    Tr
 } from '@chakra-ui/react'
 
 import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  getSortedRowModel,
-  SortingState,
-  useReactTable
+    createColumnHelper,
+    flexRender,
+    getCoreRowModel,
+    getSortedRowModel,
+    SortingState,
+    useReactTable
 } from '@tanstack/react-table'
 
-import { Router, useRouter } from 'next/router'
-import {
-  IoCaretDown,
-  IoCaretUp,
-  IoCheckmarkDone,
-  IoHourglass
-} from 'react-icons/io5'
+import Head from 'next/head'
 import NextLink from 'next/link'
+import {
+    IoCaretDown,
+    IoCaretUp,
+    IoCheckmarkDone,
+    IoHourglass
+} from 'react-icons/io5'
 
 type Questions = {
   id: number
@@ -164,13 +154,21 @@ const DataTable = ({ data, columns }) => {
 
 const Projects = () => {
   return (
-    <Layout title={'Project page'}>
+    <Box>
+      <Head>
+        <title>Project | Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Proj2learn problems page" />
+        <meta name="author" content="Russel Rai" />
+        <meta name="author" content="moodykroko" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Box m={4} h="100vh" top={24} position={'relative'} textAlign={'center'}>
         <Box p={4} m={4}>
           <DataTable columns={columns} data={data} />
         </Box>
       </Box>
-    </Layout>
+    </Box>
   )
 }
 

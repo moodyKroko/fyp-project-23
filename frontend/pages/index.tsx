@@ -7,11 +7,19 @@ import hero_1 from '../public/hero/hero_1.svg'
 import hero_2 from '../public/hero/hero_2.svg'
 import hero_3 from '../public/hero/hero_3.svg'
 
-import Layout from '@/components/layouts/main'
+import Head from 'next/head'
 
 export default function Home() {
   return (
-    <Layout title={'Proj2Learn | Homepage'}>
+    <Box>
+      <Head>
+        <title>Proj2Learn | Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Proj2learn homepage" />
+        <meta name="author" content="Russel Rai" />
+        <meta name="author" content="moodykroko" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Stack direction={'column'} spacing={44}>
         <Box top={32} position={'relative'} textAlign={'center'}>
           <Text
@@ -64,6 +72,6 @@ export default function Home() {
           </Stack>
         </Box>
       </Stack>
-    </Layout>
+    </Box>
   )
 }

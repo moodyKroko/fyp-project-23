@@ -4,25 +4,13 @@ import React from 'react'
 import Footer from '../footer'
 import Navbar from '../navbar'
 
-const Layout = ({ children, title }) => {
+const Layout = ({ children }) => {
   return (
-    <>
-      <Head>
-        <title>{title}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Proj2learn homepage" />
-        <meta name="author" content="Russel Rai" />
-        <meta name="author" content="moodykroko" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Box>
-        <Navbar />
-        <main>
-          <Container maxW={'container.xl'}>{children}</Container>
-        </main>
-        <Footer />
-      </Box>
-    </>
+    <Box>
+      <Navbar />
+      <Container maxW={'container.xl'}>{children}</Container>
+      <Footer />
+    </Box>
   )
 }
 
