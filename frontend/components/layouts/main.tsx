@@ -1,4 +1,4 @@
-import { Container } from '@chakra-ui/react'
+import { Box, Container } from '@chakra-ui/react'
 import Head from 'next/head'
 import React from 'react'
 import Footer from '../footer'
@@ -15,11 +15,13 @@ const Layout = ({ children, title }) => {
         <meta name="author" content="moodykroko" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
-      <main>
-        <Container maxW={'container.xl'}>{children}</Container>
-      </main>
-      <Footer />
+      <Box>
+        <Navbar />
+        <main>
+          <Container maxW={'container.xl'}>{children}</Container>
+        </main>
+        <Footer />
+      </Box>
     </>
   )
 }
