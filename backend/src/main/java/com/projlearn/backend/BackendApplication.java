@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories
+//@EnableJpaRepositories // problem with controllerTest class
 @SpringBootApplication
 @EntityScan
 public class BackendApplication {
