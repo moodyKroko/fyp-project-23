@@ -63,7 +63,7 @@ const Projects = ({ projects }) => {
   return (
     <Box display={'flex'} justifyContent={'center'}>
       <Head>
-        <title>Project | Home</title>
+        <title>All Projects</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Proj2learn problems page" />
         <meta name="author" content="Russel Rai" />
