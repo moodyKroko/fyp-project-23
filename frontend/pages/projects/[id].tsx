@@ -1,17 +1,11 @@
 import {
-  Box,
-  Container,
-  Grid,
-  GridItem,
-  Skeleton,
-  SkeletonText,
-  Spinner,
-  Stack,
-  Text
+    Box,
+    Container,
+    Grid,
+    GridItem, Spinner, Text
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { IoGridOutline } from 'react-icons/io5'
 import useSWR from 'swr'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
@@ -74,17 +68,17 @@ const Problem = () => {
         </Container> */}
         <Container maxW={'container.xl'} mt={24}>
           <Grid
-            templateRows="repeat(5, 1fr)"
+            templateRows="repeat(8, 1fr)"
             templateColumns="repeat(2, 1fr)"
             gap={1}
           >
-            <GridItem w={'100%'} rowSpan={2} colSpan={1} bg={'tomato'}>
+            <GridItem w={'100%'} rowSpan={6} colSpan={1} bg={'tomato'}>
               Question Page
             </GridItem>
-            <GridItem w={'100%'} rowSpan={2} colSpan={4} bg={'papayawhip'}>
+            <GridItem w={'100%'} rowSpan={6} colSpan={1} bg={'papayawhip'}>
               Editor Page
             </GridItem>
-            <GridItem w={'100%'} colSpan={5} bg={'teal'}>
+            <GridItem w={'100%'} rowSpan={2} colSpan={2} bg={'teal'}>
               Error Console
             </GridItem>
           </Grid>
