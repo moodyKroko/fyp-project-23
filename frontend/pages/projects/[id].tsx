@@ -1,13 +1,17 @@
 import {
   Box,
   Container,
+  Grid,
+  GridItem,
   Skeleton,
   SkeletonText,
   Spinner,
+  Stack,
   Text
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { IoGridOutline } from 'react-icons/io5'
 import useSWR from 'swr'
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
@@ -63,10 +67,27 @@ const Problem = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <Container display={'flex'} mt={24} justifyContent={'center'}>
+        {/* <Container display={'flex'} mt={24} justifyContent={'center'}>
           <Text color={'red'} casing={'capitalize'}>
             Problem Title: {project.title}
           </Text>
+        </Container> */}
+        <Container maxW={'container.xl'} mt={24}>
+          <Grid
+            templateRows="repeat(5, 1fr)"
+            templateColumns="repeat(2, 1fr)"
+            gap={1}
+          >
+            <GridItem w={'100%'} rowSpan={2} colSpan={1} bg={'tomato'}>
+              Question Page
+            </GridItem>
+            <GridItem w={'100%'} rowSpan={2} colSpan={4} bg={'papayawhip'}>
+              Editor Page
+            </GridItem>
+            <GridItem w={'100%'} colSpan={5} bg={'teal'}>
+              Error Console
+            </GridItem>
+          </Grid>
         </Container>
       </Box>
     </>
