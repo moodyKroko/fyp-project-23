@@ -23,8 +23,8 @@ const Navbar = () => {
         <Box>
           <Flex align="center" style={{ gap: 48 }}>
             <ProjIcon />
-            <Link as={NextLink} href="/projects">
-              Projects
+            <Link as={NextLink} href="/projects" _hover={{ color: 'purple.500' }}>
+              <Box p={4}>Projects</Box>
             </Link>
           </Flex>
         </Box>

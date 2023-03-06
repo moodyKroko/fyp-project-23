@@ -1,4 +1,12 @@
-import { Box, Link, Stack, Text } from '@chakra-ui/react'
+import {
+  border,
+  Box,
+  Link,
+  Stack,
+  Text,
+  useColorMode,
+  useColorModeValue
+} from '@chakra-ui/react'
 import { GetStaticProps } from 'next'
 
 import Head from 'next/head'
@@ -36,15 +44,16 @@ const ProjectItems = ({ project }) => {
       key={project.id}
       p={4}
       justifyContent={'space-between'}
-      _hover={{ borderLeft: '8px solid blue' }}
+      _hover={{ borderLeft: '8px solid purple' }}
+      style={{
+        borderBottom: '1px solid gray',
+        marginTop: '0px'
+      }}
+      _even={{ background: 'purple.500', textColor: 'white' }}
     >
-      <Link
-        as={NextLink}
-        href={`/projects/${project.id}`}
-        _hover={{ color: 'purple.600' }}
-      >
+      <Link as={NextLink} href={`/projects/${project.id}`} _hover={{}}>
         <Box p={4} w={250} textAlign={'left'}>
-          <Text fontSize={'lg'}>{project.title}</Text>
+          {project.title}
         </Box>
       </Link>
 
@@ -69,6 +78,7 @@ const Projects = ({ projects }) => {
         <meta name="author" content="moodykroko" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/* Table */}
       <Stack
         width={'full'}
         // justifyContent={'center'}
@@ -77,14 +87,21 @@ const Projects = ({ projects }) => {
         padding={4}
         mt={24}
       >
-        <Stack direction={'row'} p={4} justifyContent={'space-between'}>
+        {/* Table header */}
+        <Stack
+          direction={'row'}
+          p={4}
+          justifyContent={'space-between'}
+          borderBottom={'2px solid gray'}
+        >
           <Text fontSize={'xl'} p={4}>
             Title
           </Text>
           <Text fontSize={'xl'}>Status</Text>
           <Text fontSize={'xl'}>Difficulty</Text>
         </Stack>
-        {projects.map(project => (
+        {/* Table content */}
+        {projects.map((project: Projects) => (
           <ProjectItems key={project.id} project={project} />
         ))}
       </Stack>
