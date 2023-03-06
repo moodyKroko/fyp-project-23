@@ -1,12 +1,4 @@
-import {
-  border,
-  Box,
-  Link,
-  Stack,
-  Text,
-  useColorMode,
-  useColorModeValue
-} from '@chakra-ui/react'
+import { Box, Link, Stack, Text } from '@chakra-ui/react'
 import { GetStaticProps } from 'next'
 
 import Head from 'next/head'
