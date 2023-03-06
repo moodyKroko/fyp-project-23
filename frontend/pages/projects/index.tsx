@@ -1,15 +1,61 @@
 import { Box, Link, Stack, Text } from '@chakra-ui/react'
+import { GetStaticProps } from 'next'
 
 import Head from 'next/head'
 import NextLink from 'next/link'
 
-export const getStaticProps = async () => {
+type Projects = {
+  id: number
+  title: string
+  description: string
+  difficulty: string
+  status: string
+}
+
+export const getStaticProps: GetStaticProps<{
+  projects: Projects[]
+}> = async context => {
   const res = await fetch('http://localhost:8081/projects')
-  const data = await res.json()
+  const projects: Projects[] = await res.json()
+
+  if (!projects) {
+    return {
+      notFound: true
+    }
+  }
 
   return {
-    props: { projects: data }
+    props: { projects }
   }
+}
+
+const ProjectItems = ({ project }) => {
+  return (
+    <Stack
+      direction={'row'}
+      key={project.id}
+      p={4}
+      justifyContent={'space-between'}
+      _hover={{ borderLeft: '8px solid blue' }}
+    >
+      <Link
+        as={NextLink}
+        href={`/projects/${project.id}`}
+        _hover={{ color: 'purple.600' }}
+      >
+        <Box p={4} w={250} textAlign={'left'}>
+          <Text fontSize={'lg'}>{project.title}</Text>
+        </Box>
+      </Link>
+
+      <Box p={4} w={180}>
+        {project.status}
+      </Box>
+      <Box p={4} w={180} textAlign={'right'}>
+        {project.difficulty}
+      </Box>
+    </Stack>
+  )
 }
 
 const Projects = ({ projects }) => {
@@ -32,35 +78,14 @@ const Projects = ({ projects }) => {
         mt={24}
       >
         <Stack direction={'row'} p={4} justifyContent={'space-between'}>
-          <Text as={'h2'}>Title</Text>
-          <Text as={'h2'}>Status</Text>
-          <Text as={'h2'}>Difficulty</Text>
+          <Text fontSize={'xl'} p={4}>
+            Title
+          </Text>
+          <Text fontSize={'xl'}>Status</Text>
+          <Text fontSize={'xl'}>Difficulty</Text>
         </Stack>
         {projects.map(project => (
-          <Stack
-            direction={'row'}
-            key={project.id}
-            p={4}
-            justifyContent={'space-between'}
-            style={{ border: '1px white' }}
-          >
-            <Box p={4} w={250} textAlign={'left'}>
-              <Link
-                as={NextLink}
-                href={`/projects/${project.id}`}
-                _hover={{ color: 'purple.600' }}
-              >
-                <Text as={'h3'}>{project.title}</Text>
-              </Link>
-            </Box>
-
-            <Box p={4} w={180}>
-              {project.status}
-            </Box>
-            <Box p={4} w={180} textAlign={'right'}>
-              {project.difficulty}
-            </Box>
-          </Stack>
+          <ProjectItems key={project.id} project={project} />
         ))}
       </Stack>
     </Box>
