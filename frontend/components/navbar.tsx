@@ -4,7 +4,7 @@ import ProjIcon from './ProjIcon'
 
 import NextLink from 'next/link'
 
-const Navbar = () => {
+function Navbar() {
   return (
     <Box
       style={{ backdropFilter: 'blur(10px)' }}

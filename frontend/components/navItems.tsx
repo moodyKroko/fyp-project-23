@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { ColorModeSwitcher } from './ColorModeSwitcherProps'
 import ProjIcon from './ProjIcon'
 
-const NavItems = () => {
+function NavItems() {
   const router = useRouter()
   return (
     <Box>

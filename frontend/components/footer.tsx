@@ -1,9 +1,9 @@
 import { montserrat } from '@/lib/fonts'
-import { Box, Flex, Stack, Text, Link, Container, HStack } from '@chakra-ui/react'
+import { Box, Link } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { IoLogoGithub } from 'react-icons/io5'
 
-const Footer = () => {
+function Footer() {
   return (
     <Box
       opacity={0.4}
