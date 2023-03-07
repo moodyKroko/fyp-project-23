@@ -1,11 +1,9 @@
 import React from 'react'
 
-type Props = {}
-
-const profile = (props: Props) => {
+function Profile() {
   return (
     <div>profile</div>
   )
 }
 
-export default profile
+export default Profile

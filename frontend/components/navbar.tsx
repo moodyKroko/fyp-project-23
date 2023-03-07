@@ -8,10 +8,11 @@ const Navbar = () => {
   return (
     <Box
       style={{ backdropFilter: 'blur(10px)' }}
-      position="fixed"
+      position="sticky"
+      top={0}
       width="100%"
       as="nav"
-      zIndex={2}
+      zIndex={100}
     >
       <Container
         display="flex"
@@ -23,8 +24,19 @@ const Navbar = () => {
         <Box>
           <Flex align="center" style={{ gap: 48 }}>
             <ProjIcon />
-            <Link as={NextLink} href="/projects" _hover={{ color: 'purple.500' }}>
-              <Box p={4}>Projects</Box>
+            <Link
+              as={NextLink}
+              href="/projects"
+              _hover={{ color: 'violet', borderBottom: '1px solid violet' }}
+            >
+              <Box
+                p={4}
+                fontWeight={'semibold'}
+                fontSize={'lg'}
+                letterSpacing="wide"
+              >
+                Projects
+              </Box>
             </Link>
           </Flex>
         </Box>

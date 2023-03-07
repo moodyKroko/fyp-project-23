@@ -8,6 +8,7 @@ const Layout = ({ children }) => {
   return (
     <Box as={'main'}>
       <Navbar />
+      <Box />
       <Container maxW={'container.xl'}>
         {children}
         <Footer />

@@ -21,7 +21,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Stack direction={'column'} spacing={44} justify={'center'}>
-        <Box top={32} position={'relative'} textAlign={'center'}>
+        <Box pt={16} position={'relative'} textAlign={'center'}>
           <Text
             p={2}
             m={4}
@@ -41,7 +41,7 @@ export default function Home() {
               justify={'space-between'}
               direction={'row-reverse'}
             >
-              <Image src={hero_1} alt={'humaaans 1'} width={288} height={376} />
+              <Image src={hero_1} alt={'humaaans 1'} width={287} height={375} />
               <Box maxW={'2xl'}>
                 <Text className={comfortaa.className} fontSize="4xl" noOfLines={3}>
                   Learn to code with our interactive, project-based courses.
@@ -53,8 +53,7 @@ export default function Home() {
 
         <Box>
           <Stack textAlign={'center'} align={'center'} direction={'row'}>
-            <Image src={hero_2} alt={'humaaans 2'} width={556} height={445} />
-
+            <Image src={hero_2} alt={'humaaans 2'} width={556} height={444} />
             <Text className={comfortaa.className} fontSize="4xl" noOfLines={4}>
               Our coding platform gives you access to tutorials and challenges that
               will help you develop your coding skills.
@@ -63,7 +62,7 @@ export default function Home() {
         </Box>
 
         <Box>
-          <Stack textAlign={'center'} align={'center'} direction={'row'}>
+          <Stack mb={14} textAlign={'center'} align={'center'} direction={'row'}>
             <Text className={comfortaa.className} fontSize="4xl" noOfLines={3}>
               With tailored support and guidance, you&apos;ll be able to master the
               basics of coding in no time.
