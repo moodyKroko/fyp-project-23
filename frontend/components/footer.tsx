@@ -12,8 +12,9 @@ function Footer() {
       justifyContent={'center'}
       alignContent={'center'}
       display={'flex'}
-      mt={10}
-      mb={10}
+      bottom={0}
+      mt={12}
+      mb={12}
       gap={150}
     >
       <Link
