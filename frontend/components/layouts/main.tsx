@@ -9,8 +9,11 @@ const bgObject = [
   { src: 'hero/bg_objects/bot-bg-obj.svg' }
 ]
 
-function Layout({ children }) {
-  return (
+function Layout({ router, children }) {
+  const heroPage = router.pathname === '/'
+
+  /** render background with svb obj if its landing page*/
+  return heroPage ? (
     <Box
       as={'main'}
       bgImage={`url(${bgObject[0].src})`}
@@ -43,6 +46,14 @@ function Layout({ children }) {
           <Footer />
         </Box>
       </Box>
+    </Box>
+  ) : (
+    /** render bg without any svb obj  */
+    <Box as="main">
+      <Navbar />
+      <Box />
+      <Container maxW={'container.xl'}>{children}</Container>
+      <Footer />
     </Box>
   )
 }

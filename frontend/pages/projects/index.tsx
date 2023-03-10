@@ -1,8 +1,9 @@
-import { Box, Link, Stack, Text } from '@chakra-ui/react'
+import { Box, Grid, GridItem, Link, Stack, Text } from '@chakra-ui/react'
 import { GetStaticProps } from 'next'
 
 import Head from 'next/head'
 import NextLink from 'next/link'
+import { motion } from 'framer-motion'
 
 type Projects = {
   id: number
@@ -29,37 +30,7 @@ export const getStaticProps: GetStaticProps<{
   }
 }
 
-const ProjectItems = ({ project }) => {
-  return (
-    <Stack
-      direction={'row'}
-      key={project.id}
-      p={4}
-      justifyContent={'space-between'}
-      _hover={{ borderLeft: '8px solid purple' }}
-      style={{
-        borderBottom: '1px solid gray',
-        marginTop: '0px'
-      }}
-      _even={{ background: 'purple.500', textColor: 'white' }}
-    >
-      <Link as={NextLink} href={`/projects/${project.id}`} _hover={{}}>
-        <Box p={4} w={250} textAlign={'left'}>
-          {project.title}
-        </Box>
-      </Link>
-
-      <Box p={4} w={180}>
-        {project.status}
-      </Box>
-      <Box p={4} w={180} textAlign={'right'}>
-        {project.difficulty}
-      </Box>
-    </Stack>
-  )
-}
-
-const Projects = ({ projects }) => {
+function Projects({ projects }) {
   return (
     <Box display={'flex'} justifyContent={'center'}>
       <Head>
@@ -80,23 +51,62 @@ const Projects = ({ projects }) => {
         mt={24}
       >
         {/* Table header */}
-        <Stack
-          direction={'row'}
-          p={4}
-          justifyContent={'space-between'}
+        <Grid
+          //   p={4}
+          justifyItems={'center'}
+          alignItems={'center'}
           borderBottom={'2px solid gray'}
+          templateColumns="repeat(3, 1fr)"
         >
-          <Text fontSize={'xl'} p={4}>
-            Title
-          </Text>
-          <Text fontSize={'xl'}>Status</Text>
-          <Text fontSize={'xl'}>Difficulty</Text>
-        </Stack>
+          <GridItem>
+            <Text fontSize={'xl'} p={4}>
+              Title
+            </Text>
+          </GridItem>
+          <GridItem>
+            <Text fontSize={'xl'}>Status</Text>
+          </GridItem>
+          <GridItem>
+            <Text fontSize={'xl'}>Difficulty</Text>
+          </GridItem>
+        </Grid>
         {/* Table content */}
-        {projects.map((project: Projects) => (
-          <ProjectItems key={project.id} project={project} />
-        ))}
+        <Box border="1px solid gray" borderRadius={'xl'} bg="blackAlpha.300">
+          {/* <Text>Showing {projects.length} results</Text> */}
+          {projects.map((project: Projects) => (
+            <ProjectItems key={project.id} project={project} />
+          ))}
+        </Box>
       </Stack>
+    </Box>
+  )
+}
+
+function ProjectItems({ project }) {
+  return (
+    <Box borderBottom={'1px solid slategray'} _last={{ borderBottom: 'none' }}>
+      <Box as={motion.div} whileHover={{ scale: 1.1 }} transition="linear 0.1s">
+        <Grid
+          justifyItems={'center'}
+          alignItems={'center'}
+          templateColumns="repeat(3, 1fr)"
+        >
+          <GridItem colSpan={1}>
+            <Link as={NextLink} href={`/projects/${project.id}`}>
+              <Box textAlign={'left'}>{project.title}</Box>
+            </Link>
+          </GridItem>
+
+          <GridItem colSpan={1}>
+            <Box p={4}>{project.status}</Box>
+          </GridItem>
+          <GridItem colSpan={1}>
+            <Box p={4} textAlign={'right'}>
+              {project.difficulty}
+            </Box>
+          </GridItem>
+        </Grid>
+      </Box>
     </Box>
   )
 }
