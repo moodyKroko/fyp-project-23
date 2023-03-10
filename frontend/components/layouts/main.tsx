@@ -2,29 +2,36 @@ import { Box, Container } from '@chakra-ui/react'
 import Footer from '../Footer'
 import Navbar from '../Navbar'
 
+const bgObject = [
+  { src: 'hero/bg_objects/top-bg-obj.svg' },
+  { src: 'hero/bg_objects/right-bg-obj.svg' },
+  { src: 'hero/bg_objects/left-bg-obj.svg' },
+  { src: 'hero/bg_objects/bot-bg-obj.svg' }
+]
+
 function Layout({ children }) {
   return (
     <Box
       as={'main'}
-      bgImage="url('hero/bg_objects/top-bg-obj.svg')"
+      bgImage={`url(${bgObject[0].src})`}
       bgPos="top"
       bgRepeat="no-repeat"
     >
       <Box
         as="div"
-        bgImage="url('hero/bg_objects/right-bg-obj.svg')"
+        bgImage={`url(${bgObject[1].src})`}
         bgPos="right"
         bgRepeat="no-repeat"
       >
         <Box
           as="div"
-          bgImage="url('hero/bg_objects/left-bg-obj.svg')"
+          bgImage={`url(${bgObject[2].src})`}
           bgPos="left"
           bgRepeat="no-repeat"
         >
           <Box
             as="div"
-            bgImage="url('hero/bg_objects/bot-bg-obj.svg')"
+            bgImage={`url(${bgObject[3].src})`}
             bgPos="right 0% bottom 0%"
             bgRepeat="no-repeat"
             mb={10}
@@ -39,13 +46,5 @@ function Layout({ children }) {
     </Box>
   )
 }
-
-const bgObject = [
-  { src: 'hero/bg_objects/top-bg-obj.svg' },
-  { src: 'hero/bg_objects/right-bg-obj.svg' },
-  { src: 'hero/bg_objects/left-bg-obj.svg' },
-  { src: 'hero/bg_objects/left-bg-obj2.svg' },
-  { src: 'hero/bg_objects/bot-bg-obj.svg' }
-]
 
 export default Layout
