@@ -1,4 +1,12 @@
-import { Box, Grid, GridItem, Link, Stack, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Grid,
+  GridItem,
+  Link,
+  Stack,
+  Text,
+  useColorModeValue
+} from '@chakra-ui/react'
 import { GetStaticProps } from 'next'
 
 import Head from 'next/head'
@@ -71,7 +79,7 @@ function Projects({ projects }) {
           </GridItem>
         </Grid>
         {/* Table content */}
-        <Box border="1px solid gray" borderRadius={'xl'} bg="blackAlpha.300">
+        <Box border="1px solid gray" borderRadius={'xl'}>
           {/* <Text>Showing {projects.length} results</Text> */}
           {projects.map((project: Projects) => (
             <ProjectItems key={project.id} project={project} />
@@ -83,27 +91,35 @@ function Projects({ projects }) {
 }
 
 function ProjectItems({ project }) {
+  const textHighlightColor = useColorModeValue('purple.600', 'purple.500')
+  const bgHighlight = useColorModeValue('#d9d9d9', '#313a4e')
+
   return (
-    <Box borderBottom={'1px solid slategray'} _last={{ borderBottom: 'none' }}>
+    <Box
+      borderBottom={'1px solid slategray'}
+      _hover={{ backgroundColor: bgHighlight }}
+      _last={{ borderBottom: 'none', borderBottomRadius: 'xl' }}
+      _first={{ borderTopRadius: 'xl' }}
+    >
       <Box as={motion.div} whileHover={{ scale: 1.1 }} transition="linear 0.1s">
         <Grid
-          justifyItems={'center'}
+          //   justifyItems={'left'}
+          p={8}
           alignItems={'center'}
           templateColumns="repeat(3, 1fr)"
+          _hover={{ color: textHighlightColor }}
         >
           <GridItem colSpan={1}>
             <Link as={NextLink} href={`/projects/${project.id}`}>
-              <Box textAlign={'left'}>{project.title}</Box>
+              <Box textAlign={'center'}>{project.title}</Box>
             </Link>
           </GridItem>
 
           <GridItem colSpan={1}>
-            <Box p={4}>{project.status}</Box>
+            <Box textAlign={'center'}>{project.status}</Box>
           </GridItem>
           <GridItem colSpan={1}>
-            <Box p={4} textAlign={'right'}>
-              {project.difficulty}
-            </Box>
+            <Box textAlign={'center'}>{project.difficulty}</Box>
           </GridItem>
         </Grid>
       </Box>

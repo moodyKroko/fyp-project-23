@@ -1,11 +1,14 @@
-import { Box, Image } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
+import NextImage from 'next/image'
 import Link from 'next/link'
+
+import Logo from '../public/proj2learn.png'
 
 const ProjIcon = () => {
   return (
     <Box>
       <Link href="/" scroll={false}>
-        <Image boxSize="50px" src="/proj2learn.png" alt="website logo" />
+        <NextImage alt="site logo" src={Logo} width={50} height={50} />
       </Link>
     </Box>
   )

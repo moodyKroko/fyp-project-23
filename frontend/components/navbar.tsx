@@ -1,8 +1,9 @@
-import { Box, Container, Flex, Link } from '@chakra-ui/react'
+import { Box, Container, Flex, Link, Text } from '@chakra-ui/react'
 import { ColorModeSwitcher } from './ColorModeSwitcherProps'
 import ProjIcon from './ProjIcon'
 
 import NextLink from 'next/link'
+import { motion } from 'framer-motion'
 
 function Navbar() {
   return (
@@ -24,18 +25,16 @@ function Navbar() {
         <Box>
           <Flex align="center" style={{ gap: 48 }}>
             <ProjIcon />
-            <Link
-              as={NextLink}
-              href="/projects"
-              _hover={{ color: 'violet', borderBottom: '1px solid violet' }}
-            >
+            <Link as={NextLink} href="/projects" _hover={{}}>
               <Box
+                as={motion.div}
+                whileHover={{ scale: 1.2 }}
                 p={4}
                 fontWeight={'semibold'}
                 fontSize={'lg'}
                 letterSpacing="wide"
               >
-                Projects
+                <Text>Projects</Text>
               </Box>
             </Link>
           </Flex>

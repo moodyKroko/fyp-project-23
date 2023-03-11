@@ -7,7 +7,7 @@ function Footer() {
   return (
     <Box
       opacity={0.4}
-      className={montserrat.className}
+      style={montserrat.style}
       fontSize={'md'}
       justifyContent={'center'}
       alignContent={'center'}

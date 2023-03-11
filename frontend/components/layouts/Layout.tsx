@@ -14,38 +14,40 @@ function Layout({ router, children }) {
 
   /** render background with svb obj if its landing page*/
   return heroPage ? (
-    <Box
-      as={'main'}
-      bgImage={`url(${bgObject[0].src})`}
-      bgPos="top"
-      bgRepeat="no-repeat"
-    >
-      <Box
-        as="div"
-        bgImage={`url(${bgObject[1].src})`}
-        bgPos="right"
+    <Box>
+      {/* <Box
+        as={'main'}
+        bgImage={`url(${bgObject[0].src})`}
+        bgPos="top"
         bgRepeat="no-repeat"
-      >
-        <Box
+      > */}
+      {/* <Box
           as="div"
-          bgImage={`url(${bgObject[2].src})`}
-          bgPos="left"
+          bgImage={`url(${bgObject[1].src})`}
+          bgPos="right"
           bgRepeat="no-repeat"
-        >
-          <Box
+        > */}
+      {/* <Box
             as="div"
-            bgImage={`url(${bgObject[3].src})`}
-            bgPos="right 0% bottom 0%"
+            bgImage={`url(${bgObject[2].src})`}
+            bgPos="left"
             bgRepeat="no-repeat"
-            mb={10}
-          >
-            <Navbar />
-            <Box />
-            <Container maxW={'container.xl'}>{children}</Container>
-          </Box>
-          <Footer />
-        </Box>
-      </Box>
+          > */}
+      {/* <Box
+              as="div"
+              bgImage={`url(${bgObject[3].src})`}
+              bgPos="right 0% bottom 0%"
+              bgRepeat="no-repeat"
+              mb={10}
+            > */}
+      <Navbar />
+      {/* <Box /> */}
+      <Container maxW={'container.xl'}>{children}</Container>
+      {/* </Box> */}
+      <Footer />
+      {/* </Box> */}
+      {/* </Box> */}
+      {/* </Box> */}
     </Box>
   ) : (
     /** render bg without any svb obj  */

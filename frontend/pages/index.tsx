@@ -26,7 +26,7 @@ export default function Home() {
             p={2}
             m={4}
             alignSelf={'center'}
-            className={secularone.className}
+            style={secularone.style}
             fontSize="7xl"
             textShadow={'1px 1px 2px gray'}
             sx={{ textTransform: 'uppercase', letterSpacing: 7.5 }}
@@ -42,10 +42,17 @@ export default function Home() {
               justify={'space-between'}
               direction={'row-reverse'}
             >
-              <Image src={hero_1} alt={'humaaans 1'} width={287} height={375} />
+              <Image
+                src={hero_1}
+                alt={'humaaans 1'}
+                width={287}
+                // height={375}
+                style={{ height: 'auto' }}
+                loading="eager"
+              />
               <Box maxW={'2xl'}>
                 <Text
-                  className={comfortaa.className}
+                  style={comfortaa.style}
                   fontSize="4xl"
                   noOfLines={3}
                   textShadow={'1px 1px 2px gray'}
@@ -63,11 +70,12 @@ export default function Home() {
               src={hero_2}
               alt={'humaaans 2'}
               width={556}
-              height={444}
-              loading={'eager'}
+              //   height={444}
+              style={{ height: 'auto' }}
+              loading="eager"
             />
             <Text
-              className={comfortaa.className}
+              style={comfortaa.style}
               fontSize="4xl"
               noOfLines={4}
               textShadow={'1px 1px 2px gray'}
@@ -87,7 +95,7 @@ export default function Home() {
             direction={'row'}
           >
             <Text
-              className={comfortaa.className}
+              style={comfortaa.style}
               fontSize="4xl"
               noOfLines={3}
               textShadow={'1px 1px 2px gray'}
@@ -95,7 +103,14 @@ export default function Home() {
               With tailored support and guidance, you&apos;ll be able to master the
               basics of coding in no time.
             </Text>
-            <Image src={hero_3} alt={'humaaans 3'} width={556} height={445} />
+            <Image
+              src={hero_3}
+              alt={'humaaans 3'}
+              width={556}
+              //   height={445}
+              style={{ height: 'auto' }}
+              loading="eager"
+            />
           </Stack>
         </Box>
       </Stack>
