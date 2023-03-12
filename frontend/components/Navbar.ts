@@ -29,6 +29,7 @@ function Navbar() {
               <Box
                 as={motion.div}
                 whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 1.0 }}
                 p={4}
                 fontWeight={'semibold'}
                 fontSize={'lg'}
@@ -40,7 +41,12 @@ function Navbar() {
           </Flex>
         </Box>
 
-        <Box alignItems="right">
+        <Box
+          as={motion.div}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 1.0 }}
+          alignItems="right"
+        >
           <ColorModeSwitcher />
         </Box>
       </Container>
