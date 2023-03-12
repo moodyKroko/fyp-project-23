@@ -4,16 +4,15 @@ import {
   Grid,
   GridItem,
   Link,
-  Spacer,
   Stack,
   Text,
   useColorModeValue
 } from '@chakra-ui/react'
 import { GetStaticProps } from 'next'
 
+import { motion } from 'framer-motion'
 import Head from 'next/head'
 import NextLink from 'next/link'
-import { motion } from 'framer-motion'
 
 type Projects = {
   id: number
