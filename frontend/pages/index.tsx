@@ -1,5 +1,5 @@
 import { comfortaa, secularone } from '@/lib/fonts'
-import { Box, Stack, Text } from '@chakra-ui/react'
+import { Box, chakra, shouldForwardProp, Stack, Text } from '@chakra-ui/react'
 
 import Image from 'next/image'
 
@@ -8,6 +8,44 @@ import hero_2 from '../public/hero/hero_2.svg'
 import hero_3 from '../public/hero/hero_3.svg'
 
 import Head from 'next/head'
+import { isValidMotionProp, motion } from 'framer-motion'
+
+const ChakraBox = chakra(motion.div, {
+  /**
+   * Allow motion props and non-Chakra props to be forwarded.
+   */
+  shouldForwardProp: prop => isValidMotionProp(prop) || shouldForwardProp(prop)
+})
+
+const heroImageVariants = {
+  hidden: {
+    x: '100vw',
+    opacity: 0
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    duration: 1,
+    transition: {
+      type: 'spring',
+      delay: 0.5
+    }
+  }
+}
+const heroTextVariant = {
+  hidden: {
+    x: '100vw',
+    opacity: 0
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: 'spring',
+      delay: 0.3
+    }
+  }
+}
 
 export default function Home() {
   return (
@@ -21,7 +59,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Stack direction={'column'} justify={'center'}>
-        <Box pt={16} position={'relative'} textAlign={'center'}>
+        <ChakraBox
+          initial={{ y: '-100vh' }}
+          animate={{ y: 0 }}
+          pt={16}
+          position={'relative'}
+          textAlign={'center'}
+        >
           <Text
             p={2}
             m={4}
@@ -33,8 +77,8 @@ export default function Home() {
           >
             Learn by doing it.
           </Text>
-        </Box>
-        <Box p={3} textAlign="center">
+        </ChakraBox>
+        <Box p={4} textAlign="center">
           <Box mb={20} textAlign={'left'}>
             <Stack
               textAlign={'center'}
@@ -42,15 +86,26 @@ export default function Home() {
               justify={'space-between'}
               direction={'row-reverse'}
             >
-              <Image
-                src={hero_1}
-                alt={'humaaans 1'}
-                width={287}
-                // height={375}
-                style={{ height: 'auto' }}
-                loading="eager"
-              />
-              <Box maxW={'2xl'}>
+              <ChakraBox
+                variants={heroImageVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <Image
+                  src={hero_1}
+                  alt={'humaaans 1'}
+                  width={287}
+                  // height={375}
+                  style={{ height: 'auto' }}
+                  loading="eager"
+                />
+              </ChakraBox>
+              <ChakraBox
+                variants={heroTextVariant}
+                initial="hidden"
+                animate="visible"
+                maxW={'2xl'}
+              >
                 <Text
                   style={comfortaa.style}
                   fontSize="4xl"
@@ -59,30 +114,49 @@ export default function Home() {
                 >
                   Learn to code with our interactive, project-based courses.
                 </Text>
-              </Box>
+              </ChakraBox>
             </Stack>
           </Box>
         </Box>
 
         <Box>
-          <Stack mb={40} textAlign={'center'} align={'center'} direction={'row'}>
-            <Image
-              src={hero_2}
-              alt={'humaaans 2'}
-              width={556}
-              //   height={444}
-              style={{ height: 'auto' }}
-              loading="eager"
-            />
-            <Text
-              style={comfortaa.style}
-              fontSize="4xl"
-              noOfLines={4}
-              textShadow={'1px 1px 2px gray'}
+          <Stack
+            p={4}
+            mb={40}
+            textAlign={'center'}
+            align={'center'}
+            direction={'row'}
+          >
+            <ChakraBox
+              variants={heroImageVariants}
+              initial="hidden"
+              animate="visible"
             >
-              Our coding platform gives you access to tutorials and challenges that
-              will help you develop your coding skills.
-            </Text>
+              <Image
+                src={hero_2}
+                alt={'humaaans 2'}
+                width={556}
+                height={444}
+                style={{ height: 'auto' }}
+                loading="eager"
+              />
+            </ChakraBox>
+            <ChakraBox
+              maxW={'2xl'}
+              variants={heroTextVariant}
+              initial="hidden"
+              animate="visible"
+            >
+              <Text
+                style={comfortaa.style}
+                fontSize="4xl"
+                noOfLines={4}
+                textShadow={'1px 1px 2px gray'}
+              >
+                Our coding platform gives you access to tutorials and challenges that
+                will help you develop your coding skills.
+              </Text>
+            </ChakraBox>
           </Stack>
         </Box>
 
