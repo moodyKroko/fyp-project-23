@@ -1,7 +1,7 @@
 package com.projlearn.backend.controller;
 
-import com.projlearn.backend.entity.Project;
-import com.projlearn.backend.services.ProjectService;
+import com.projlearn.backend.entity.Difficulty;import com.projlearn.backend.entity.Project;
+import com.projlearn.backend.entity.Status;import com.projlearn.backend.services.ProjectService;
 import java.util.List;
 import java.util.Optional;import javax.swing.text.html.Option;import org.springframework.http.HttpStatus;import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +34,15 @@ public class ProjectController {
     return ResponseEntity.ok(projectService.findByTitle(title));
   }
 
-  @PostMapping("/project/{id}")
-  public ResponseEntity<Project> submitProject(@PathVariable("id") Integer id, @RequestBody Project project) {
-    return ResponseEntity.ok(projectService.submitProjectSolution(project));
+  @PostMapping("/project/add")
+  public ResponseEntity<Project> submitProject(@RequestBody Project project) {
+      Project newProject = new Project();
+      newProject.setDescription(project.getDescription());
+      newProject.setTitle(project.getTitle());
+      newProject.setDifficulty(project.getDifficulty());
+      newProject.setStatus(project.getStatus());
+
+      return new ResponseEntity<>(projectService.saveProject(newProject), HttpStatus.CREATED);
   }
+
 }

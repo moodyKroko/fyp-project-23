@@ -19,6 +19,10 @@ public class ProjectService {
     return projectRepository.findAll();
   }
 
+  public Project saveProject(Project project) {
+    return projectRepository.save(project);
+  }
+
   public Project findById(Integer id) {
     Optional<Project> project = projectRepository.findById(id);
     return project.orElseGet(Project::new);
