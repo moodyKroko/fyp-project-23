@@ -38,4 +38,10 @@ public class ProjectService {
     Optional<Project> project = projectRepository.findByTitle(title);
     return project.orElseGet(Project::new);
   }
+
+  public Project submitProjectSolution(Project project) {
+    // TODO: integrate interpreter with the web app
+
+    return new Project();
+  }
 }
