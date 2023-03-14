@@ -7,10 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("projects")
 public class ProjectController {
 
   private final ProjectService projectService;
@@ -19,18 +19,18 @@ public class ProjectController {
     this.projectService = projectService;
   }
 
-  @GetMapping
+  @GetMapping("/projects")
   public ResponseEntity<List<Project>> getAllProjects() {
     return ResponseEntity.ok(projectService.getAllProjects());
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("/project/{id}")
   public ResponseEntity<Project> getProjectById(@PathVariable("id") Integer id) {
     return ResponseEntity.ok(projectService.findById(id));
   }
 
-  @GetMapping("/{title}")
-  public ResponseEntity<Project> getProjectByTitle(@PathVariable("title") String title) {
+  @GetMapping("/project")
+  public ResponseEntity<Project> getProjectByTitle(@RequestParam("title") String title) {
     return ResponseEntity.ok(projectService.findByTitle(title));
   }
 }
