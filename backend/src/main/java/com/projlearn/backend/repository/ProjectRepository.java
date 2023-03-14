@@ -12,4 +12,6 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
   Project findProjectByStatus(Status status);
 
   Optional<Project> findById(Integer id);
+
+  Optional<Project> findByTitle(String title);
 }

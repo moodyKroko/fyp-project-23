@@ -28,4 +28,9 @@ public class ProjectController {
   public ResponseEntity<Project> getProjectById(@PathVariable("id") Integer id) {
     return ResponseEntity.ok(projectService.findById(id));
   }
+
+  @GetMapping("/{title}")
+  public ResponseEntity<Project> getProjectByTitle(@PathVariable("title") String title) {
+    return ResponseEntity.ok(projectService.findByTitle(title));
+  }
 }

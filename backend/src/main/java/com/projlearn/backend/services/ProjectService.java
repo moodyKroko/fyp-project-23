@@ -26,11 +26,16 @@ public class ProjectService {
 
   public Project findByStatus(String status) {
     // do it if its necessary ??
-//    Optional<Project> project = projectRepository.findProjectByStatus();
+    //    Optional<Project> project = projectRepository.findProjectByStatus();
     return new Project();
   }
 
   public Project findByDifficulty(String difficulty) {
     return new Project();
+  }
+
+  public Project findByTitle(String title) {
+    Optional<Project> project = projectRepository.findByTitle(title);
+    return project.orElseGet(Project::new);
   }
 }
