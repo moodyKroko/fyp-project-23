@@ -22,6 +22,35 @@ public class DBRunner implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
+
+    String[] properExercies = {
+      "Print \"Hello World!\"",
+      "Write a function that does a sum when given two numbers.",
+      "Create a method for a fibonacci sequence."
+    };
+
+    String[] exerciseDifficulty = {"Easy", "Medium", "Hard"};
+
+    for (int i = 0; i < 3; i++) {
+      Project project = new Project();
+      project.setTitle(properExercies[i]);
+      project.setDescription(properExercies[i]);
+      project.setStatus(Status.NOT_ATTEMPTED);
+
+      if (exerciseDifficulty[i].equals("Easy")) {
+        project.setDifficulty(Difficulty.EASY);
+      }
+
+      if (exerciseDifficulty[i].equals("Medium")) {
+        project.setDifficulty(Difficulty.MEDIUM);
+      }
+
+      if (exerciseDifficulty[i].equals("Hard")) {
+        project.setDifficulty(Difficulty.HARD);
+      }
+      projectRepository.save(project);
+    }
+
     Faker faker = new Faker();
 
     StringBuilder title = new StringBuilder();
@@ -29,7 +58,7 @@ public class DBRunner implements CommandLineRunner {
 
     logger.info("--- saving projects to database ---");
 
-    int dataCount = 50;
+    int dataCount = 45;
     int oneThirdOfDataCount = 50 / 3;
     for (int i = 0; i < dataCount; i++) {
       title.append(faker.lorem().characters(3, 10, false, false));

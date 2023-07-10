@@ -94,9 +94,9 @@ export default function Home() {
                 <Image
                   src={hero_1}
                   alt={'humaaans 1'}
-                  width={287}
-                  // height={375}
-                  style={{ height: 'auto' }}
+                  //   width={287}
+                  //   height={375}
+                  //   style={{ height: 'auto' }}
                   loading="eager"
                 />
               </ChakraBox>
@@ -135,9 +135,9 @@ export default function Home() {
               <Image
                 src={hero_2}
                 alt={'humaaans 2'}
-                width={556}
-                height={444}
-                style={{ height: 'auto' }}
+                // width={556}
+                // height={444}
+                // style={{ height: 'auto' }}
                 loading="eager"
               />
             </ChakraBox>
@@ -180,10 +180,10 @@ export default function Home() {
             <Image
               src={hero_3}
               alt={'humaaans 3'}
-              width={556}
-              //   height={445}
-              style={{ height: 'auto' }}
-              loading="eager"
+              //   width={0} // 556
+              //   height={0} // 445
+              //   style={{ height: '445', width: '556' }}
+              //   loading="eager"
             />
           </Stack>
         </Box>
